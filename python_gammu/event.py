@@ -9,7 +9,7 @@ class MyHandler(FileSystemEventHandler):
 
 event_handler = MyHandler()
 observer = Observer ()
-observer.schedule(event_handler, path='./inbox', recursive=False)
+observer.schedule(event_handler, path='/var/spool/gammu/inbox/', recursive=False)
 observer.start()
 
 while True:
