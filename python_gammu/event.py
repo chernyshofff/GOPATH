@@ -5,11 +5,13 @@ from watchdog.events import FileSystemEventHandler
 
 class MyHandler(FileSystemEventHandler):
     def on_created(self, event):
-        print ("on created", event.src_path)
+        with open(event.src_path, encoding = "utf-8") as f:
+            content = f.read()
+            print(content)
 
 event_handler = MyHandler()
 observer = Observer ()
-observer.schedule(event_handler, path='/var/spool/gammu/inbox/', recursive=False)
+observer.schedule(event_handler, path='./inbox', recursive=False)
 observer.start()
 
 while True:
